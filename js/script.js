@@ -26,6 +26,6 @@ document.getElementById("notifyBtn").addEventListener("click", () => {
 function showNotification(message) {
     new Notification("New Message", {
         body: message, 
-        icon: "./images/notifybell.png",
+        icon: "./images/hearteyes.png"
     });
 }
