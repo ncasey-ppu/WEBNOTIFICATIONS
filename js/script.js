@@ -1,8 +1,12 @@
-document.getElementById("notifyBtn").addEventListener("click", () => {
-    const message = document.getElementById("messageInput").value.trim();
+let notificationCount = 0;
 
-    if (!message) {
-        alert("Please enter a message first before clicking the button");
+document.getElementById("notifyBtn").addEventListener("click", () => {
+    const title = document.getElementById("titleInput").value.trim();
+    const message = document.getElementById("messageInput").value.trim();
+    const icon = document.getElementById("iconInput").value.trim();
+
+    if (!title || !message || !icon) {
+        alert("Please enter a title, message, and icon first before clicking the button");
         return;
     }
 
@@ -11,21 +15,30 @@ document.getElementById("notifyBtn").addEventListener("click", () => {
         return;
     }
 
+    //loop to count notification with 5 second delay
+    const notify = () => {
+        setTimeout(() => {
+            notificationCount++;
+            const fullMessage = `${message}\n(Notification #${notificationCount})`;
+            showNotification(title, fullMessage, icon);
+        }, 5000);
+    };
+
     //ask for permission
     if (Notification.permission === "granted") {
-        showNotification(message);
+        notify();
     } else if (Notification.permission !== "denied") {
         Notification.requestPermission().then(permission => {
             if (permission === "granted") {
-                showNotification(message);
+                notify();
             }
         });
     }
 });
 
-function showNotification(message) {
-    new Notification("New Message", {
+function showNotification(title, message, icon) {
+    new Notification(title, {
         body: message, 
-        icon: "./images/hearteyes.png"
+        icon: icon
     });
 }
