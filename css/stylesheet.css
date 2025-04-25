@@ -1,5 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: ivory;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
@@ -25,4 +26,24 @@ button {
 
 button:hover {
     background: #cd0514;
+}
+
+/* Navigation Menu */
+.navbar {
+    background: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding:10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0 10px;
+    background: #007bff;
+    transition: background o.3s ease;
 }
